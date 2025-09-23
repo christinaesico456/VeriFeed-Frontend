@@ -1,0 +1,19 @@
+/* @tailwind directives removed: make sure to use Tailwind's build process if you want to use them */
+/* @tailwind base; */
+/* @tailwind components; */
+/* @tailwind utilities; */
+@import "tailwindcss";
+.hero-bg {
+  background-image: url('/src/assets/wave.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.nav-pill {
+  box-shadow: 0 12px 30px rgba(9, 12, 20, 0.55);
+}
+
+.phone-reflection {
+  filter: blur(18px);
+  opacity: 0.22;
+}
