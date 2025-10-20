@@ -34,10 +34,6 @@
           <FAQ />
         </section>
 
-        <section id="contacts" class="flex items-center justify-center min-h-screen snap-start section">
-          <Contacts @open-feedback="showFeedbackModal = true" />
-        </section>
-
         <section id="feedback" class="flex items-center justify-center min-h-screen snap-start section">
           <FeedbackList :refresh="feedbackRefreshKey" />
         </section>
@@ -54,6 +50,7 @@
 </template>
 
 <script>
+import { ref } from 'vue'
 import Layout from './components/Layout.vue'
 import Hero from './components/Hero.vue'
 import About from './components/About.vue'
@@ -62,9 +59,15 @@ import HowItWorks from './components/HowItWorks.vue'
 import Video from './components/Video.vue'
 import Install from './components/Install.vue'
 import FAQ from './components/FAQ.vue'
-import Contacts from './components/Contacts.vue'
 import FeedbackModal from './components/FeedbackModal.vue'
 import FeedbackList from './components/FeedbackList.vue'
+
+const feedbackRefreshKey = ref(0)
+
+// Function to refresh feedback list (optional, can be triggered from other components)
+function refreshFeedbackList() {
+  feedbackRefreshKey.value++
+}
 
 export default {
   name: 'App',
@@ -77,7 +80,6 @@ export default {
     Video,
     Install,
     FAQ,
-    Contacts,
     FeedbackModal,
     FeedbackList
   },

@@ -68,19 +68,51 @@ export default {
       faqs: [
         {
           question: "What is VeriFeed?",
-          answer: "VeriFeed is an AI-powered platform that detects manipulated or deepfake videos to keep your content authentic."
+          answer: "VeriFeed is a browser extension that detects deepfake videos on Facebook using AI models built with ResNeXt50 and LSTM technology."
         },
         {
-          question: "Is it available on mobile?",
-          answer: "Yes, VeriFeed is available on iOS and Android devices."
+          question: "How does VeriFeed detect deepfakes?",
+          answer: "It analyzes visual patterns and motion inconsistencies in videos. When manipulation is detected, VeriFeed flags it in real time."
         },
         {
-          question: "How accurate is it?",
-          answer: "Our AI achieves over 95% accuracy and continuously improves with new training data."
+          question: "Does VeriFeed have a mobile app?",
+          answer: "Currently, VeriFeed works as a browser extension for desktop. A mobile-friendly version is being considered for future development."
         },
         {
-          question: "Is VeriFeed free?",
-          answer: "We offer both free and premium plans, with advanced features in premium."
+          question: "Is VeriFeed free to use?",
+          answer: "Yes, VeriFeed is free to install and use. It was created as part of an academic research project to promote online media awareness."
+        },
+        {
+          question: "Does VeriFeed collect or upload user data?",
+          answer: "No. VeriFeed runs locally in your browser, meaning no videos or personal data are uploaded. Your privacy is fully protected."
+        },
+        {
+          question: "How accurate is VeriFeed?",
+          answer: "Based on research testing, VeriFeed’s detection model achieved high accuracy when identifying manipulated or fake videos."
+        },
+        {
+          question: "Can VeriFeed work on other websites besides Facebook?",
+          answer: "This version is built specifically for Facebook videos. However, the system architecture allows for future integration with other platforms."
+        },
+        {
+          question: "What are the system requirements to use VeriFeed?",
+          answer: "You only need a Chromium-based browser like Google Chrome or Microsoft Edge. No additional software or setup is required."
+        },
+        {
+          question: "Why was VeriFeed developed?",
+          answer: "The project aims to help users become more aware of deepfake media and misinformation, supporting digital literacy and ethical AI use."
+        },
+        {
+          question: "Can VeriFeed be used for educational or research purposes?",
+          answer: "Yes. VeriFeed’s detection results can be used by students, educators, and researchers studying misinformation, AI, and media integrity."
+        },
+        {
+          question: "Who can benefit from VeriFeed?",
+          answer: "Social media users, educators, students, and content reviewers can all use VeriFeed to verify video authenticity and prevent misinformation."
+        },
+        {
+          question: "Will VeriFeed receive updates?",
+          answer: "Yes, future updates aim to improve accuracy, add new detection models, and expand compatibility to more platforms."
         }
       ]
     }

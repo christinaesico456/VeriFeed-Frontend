@@ -8,8 +8,9 @@
           Deepfake Video Detection
         </h2>
         <p class="mt-4 text-lg leading-relaxed text-gray-300">
-          VeriFeed is designed to protect you from manipulated media. With cutting-edge AI, it identifies 
-          deepfakes, ensures authenticity, and keeps your digital world safe.
+          VeriFeed is a browser extension that detects deepfake videos on Facebook in real time.
+          It uses AI to analyze video frames and identify facial manipulations.
+          This tool helps users stay informed and safe while browsing online.
         </p>
       </div>
 

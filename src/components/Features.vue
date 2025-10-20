@@ -10,58 +10,58 @@
       </div>
 
       <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
-        <!-- Feature card -->
+        <!-- Smart Deepfake Detection -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#6EE7B7] via-[#3B82F6] to-[#8B5CF6] shadow-md shadow-blue-500/30">
             <MagnifyingGlassIcon class="w-6 h-6 text-white" />
           </div>
-          <h3 class="mb-2 text-xl font-bold">Advanced Detection</h3>
-          <p class="text-sm text-white/80">AI-powered system trained on millions of samples for maximum accuracy.</p>
+          <h3 class="mb-2 text-xl font-bold">Smart Deepfake Detection</h3>
+          <p class="text-sm text-white/80">VeriFeed uses advanced AI to check videos for signs of manipulation.</p>
         </div>
 
-        <!-- Feature card -->
+        <!-- Facebook Integration -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#3B82F6] to-[#8B5CF6] shadow-md shadow-indigo-500/30">
             <DevicePhoneMobileIcon class="w-6 h-6 text-white" />
           </div>
-          <h3 class="mb-2 text-xl font-bold">Cross-Platform</h3>
-          <p class="text-sm text-white/80">Works seamlessly across web apps, mobile, and browser extensions.</p>
+          <h3 class="mb-2 text-xl font-bold">Facebook Integration</h3>
+          <p class="text-sm text-white/80">Created as a browser extension, works directly on Facebook, scanning videos in real time as users scroll.</p>
         </div>
 
-        <!-- Feature card -->
+        <!-- Real-Time Analysis -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#8B5CF6] to-[#EC4899] shadow-md shadow-pink-500/30">
             <BoltIcon class="w-6 h-6 text-white" />
           </div>
           <h3 class="mb-2 text-xl font-bold">Real-Time Analysis</h3>
           <p class="text-sm text-white/80">Instant results with easy-to-read authenticity scores.</p>
         </div>
 
-        <!-- Feature card -->
+        <!-- Privacy and Security First -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#14B8A6] to-[#3B82F6] shadow-md shadow-cyan-500/30">
             <ShieldCheckIcon class="w-6 h-6 text-white" />
           </div>
-          <h3 class="mb-2 text-xl font-bold">Secure Integration</h3>
-          <p class="text-sm text-white/80">Protects data with end-to-end encryption across all platforms.</p>
+          <h3 class="mb-2 text-xl font-bold">Privacy and Security First</h3>
+          <p class="text-sm text-white/80">Runs locally on your browser with no uploads, keeping your data safe and private.</p>
         </div>
 
-        <!-- Feature card -->
+        <!-- User-Friendly Interface -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#6366F1] to-[#EC4899] shadow-md shadow-purple-500/30">
             <UserCircleIcon class="w-6 h-6 text-white" />
           </div>
           <h3 class="mb-2 text-xl font-bold">User-Friendly Interface</h3>
           <p class="text-sm text-white/80">Clean, simple, and accessible design for everyone.</p>
         </div>
 
-        <!-- New Feature card -->
+        <!-- Insightful Results -->
         <div class="p-8 text-white transition-transform shadow-lg bg-vf-navy rounded-3xl hover:scale-105">
-          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-white/10">
+          <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-lg bg-gradient-to-tr from-[#3B82F6] to-[#EC4899] shadow-md shadow-pink-400/30">
             <ChartBarIcon class="w-6 h-6 text-white" />
           </div>
-          <h3 class="mb-2 text-xl font-bold">Detailed Reporting</h3>
-          <p class="text-sm text-white/80">Comprehensive insights and exportable reports for informed decisions.</p>
+          <h3 class="mb-2 text-xl font-bold">Insightful Results</h3>
+          <p class="text-sm text-white/80">Shows simple reports that help users understand deepfake activity.</p>
         </div>
       </div>
     </div>
@@ -69,12 +69,12 @@
 </template>
 
 <script setup>
-import { 
-  MagnifyingGlassIcon, 
-  DevicePhoneMobileIcon, 
-  BoltIcon, 
-  ShieldCheckIcon, 
-  UserCircleIcon, 
-  ChartBarIcon 
+import {
+  MagnifyingGlassIcon,
+  DevicePhoneMobileIcon,
+  BoltIcon,
+  ShieldCheckIcon,
+  UserCircleIcon,
+  ChartBarIcon
 } from "@heroicons/vue/24/solid"
 </script>
