@@ -1,4 +1,4 @@
-# 🌸 VeriFeed Frontend
+# VeriFeed Frontend
 
 A **Vue 3 + Tailwind CSS** web application integrated with a **Django backend API**.  
 This project is part of an **academic research project** at *De La Salle University - Dasmariñas*.
