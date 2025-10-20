@@ -1,169 +1,156 @@
-```markdown
-\# 🧠 VeriFeed Frontend
+# 🌸 VeriFeed Frontend
 
-A \*\*Vue 3 + Tailwind CSS\*\* web application integrated with a \*\*Django REST backend\*\*.  
-This project is part of an \*\*academic research project\*\* at *De La Salle University – Dasmariñas.*
-
----
-
-\## 🧩 Technologies Used
-
-\| Type \| Technology \|
-\|------\|-------------\|
-\| Framework \| [Vue 3](https://vuejs.org/) \|
-\| Styling \| [Tailwind CSS](https://tailwindcss.com/) \|
-\| State Management \| [Pinia](https://pinia.vuejs.org/) \|
-\| API Communication \| [Axios](https://axios-http.com/) \|
-\| Build Tool \| [Vite](https://vitejs.dev/) \|
+A **Vue 3 + Tailwind CSS** web application integrated with a **Django backend API**.  
+This project is part of an **academic research project** at *De La Salle University - Dasmariñas*.
 
 ---
 
-\## ⚙️ Installation Guide
+## 🧩 Features
 
-\### 1️⃣ Clone the Repository
-\`\`\`bash
+- 🎨 Modern UI with **Tailwind CSS**
+- ⚡ Fast development using **Vite**
+- 🧠 State management with **Pinia**
+- 🔗 API integration with **Axios**
+- 📱 Responsive and user-friendly interface
+
+---
+
+## 🌿 Technologies Used
+
+| Type | Technology |
+|------|-------------|
+| Framework | [Vue 3](https://vuejs.org/) |
+| Styling | [Tailwind CSS](https://tailwindcss.com/) |
+| State Management | [Pinia](https://pinia.vuejs.org/) |
+| API Communication | [Axios](https://axios-http.com/) |
+| Build Tool | [Vite](https://vitejs.dev/) |
+
+---
+
+## ⚙️ Installation Guide
+
+Follow these steps to run the project locally:
+
+### 1️⃣ Clone the Repository
+```bash
 git clone https://github.com/christinaesico456/VeriFeed-Frontend.git
 cd VeriFeed-Frontend
-\`\`\`
+```
 
 ---
 
-\### 2️⃣ Install Dependencies
-\`\`\`bash
+### 2️⃣ Install Dependencies
+```bash
 npm install   # Requires Node 16+
-\`\`\`
+```
 
 ---
 
-\### 3️⃣ (Optional) Configure Tailwind
+### 3️⃣ (Optional) Configure Tailwind
+
 If Tailwind CSS isn’t initialized yet:
-\`\`\`bash
+```bash
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
-\`\`\`
+```
 
-Make sure your \*\*tailwind.config.js\*\* includes:
-\`\`\`js
+Make sure your **tailwind.config.js** includes:
+```js
 content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"]
-\`\`\`
+```
 
 ---
 
-\## 🔧 Configuration
-
-Create a \`.env\` file in the project root and add:
-
-\`\`\`bash
-VITE_API_BASE_URL=http://127.0.0.1:8000/api
-\`\`\`
-
-> Adjust the URL if your backend runs on a different host or port.
-
----
-
-\## 🚀 Run the Project
-
-\### Development
-\`\`\`bash
+### 4️⃣ Run the Development Server
+```bash
 npm run dev
-\`\`\`
-> The app runs by default at [http://localhost:5173](http://localhost:5173)
-
-\### Production Build
-\`\`\`bash
-npm run build
-\`\`\`
-
-\### Preview Production
-\`\`\`bash
-npm run preview
-\`\`\`
+```
+The app should now be running at:  
+➡️ **http://localhost:5173/**
 
 ---
 
-\## 🧱 Project Structure
-\`\`\`bash
-verifeed-frontend/
-├── src/
-│   ├── assets/              
-│   ├── components/          
-│   │   ├── Hero.vue
-│   │   ├── About.vue
-│   │   ├── Features.vue
-│   │   ├── HowItWorks.vue
-│   │   ├── FAQ.vue
-│   │   ├── Contacts.vue
-│   │   ├── FeedbackModal.vue
-│   │   ├── FeedbackList.vue
-│   ├── services/api.js      
-│   ├── stores/auth.js       
-│   ├── App.vue              
-│   ├── main.js              
+### 5️⃣ Build for Production
+```bash
+npm run build
+```
+The production-ready files will be generated in the **/dist** directory.
+
+---
+
+## 🗂️ Project Structure
+
+```bash
+VeriFeed-Frontend/
 ├── public/
-│   └── verifeed_logo.png    
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── store/
+│   ├── App.vue
+│   └── main.js
+├── .gitignore
 ├── index.html
 ├── package.json
-└── tailwind.config.js
-\`\`\`
+├── postcss.config.js
+├── tailwind.config.js
+├── vite.config.js
+└── README.md
+```
+---
+
+## 🧪 Development Notes
+
+If you encounter issues with Node or NPM versions:
+```bash
+node -v   # Ensure Node 16+
+npm -v
+```
+
+To reset dependencies:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
 
 ---
 
-\## 📦 Dependencies
-\`\`\`json
-{
-  "dependencies": {
-    "vue": "^3.x",
-    "pinia": "^2.x",
-    "axios": "^1.x",
-    "@heroicons/vue": "^2.x"
-  },
-  "devDependencies": {
-    "vite": "^5.x",
-    "tailwindcss": "^3.x",
-    "postcss": "^8.x",
-    "autoprefixer": "^10.x"
-  }
-}
-\`\`\`
+## 📦 Backend Integration Guide
 
----
+The frontend communicates with the Django backend API.
 
-\## 🔗 Backend Integration Guide
-
-The frontend communicates with the \*\*Django backend API\*\* (see VeriFeed Backend project).
-
-\### 🖥️ Backend Quick Setup
-
-Run the Django backend:
-\`\`\`bash
+### Run the Django backend:
+```bash
 python manage.py runserver
-\`\`\`
+```
 
-\*\*CORS Settings (already configured):\*\*
-\`\`\`python
-CORS_ALLOW_ALL_ORIGINS = True   # In settings.py
-\`\`\`
+**CORS settings** (already configured in `settings.py`):
+```python
+CORS_ALLOW_ALL_ORIGINS = True
+```
 
-\*\*Backend Endpoints:\*\*
-\`\`\`
-http://127.0.0.1:8000/api/accounts/ → Registration, Login, Profile
-http://127.0.0.1:8000/api/reviews/  → Feedback endpoints
-\`\`\`
+**Backend Endpoints:**
+- `http://127.0.0.1:8000/api/accounts/` → Registration, Login, Profile  
+- `http://127.0.0.1:8000/api/reviews/` → Feedback Endpoints  
 
-\*\*JWT Authentication:\*\*
-- Tokens (\`auth_token\`, \`refresh_token\`) are stored in **localStorage**  
-- Protected actions (e.g., feedback submission) require a valid JWT  
+**JWT Authentication:**
+- Tokens (`auth_token`, `refresh_token`) are stored in `localStorage`.
+- Protected actions (e.g., feedback submission) require a valid JWT.
 
 ---
 
-\## 🧑‍💻 Author
+## 📄 License
 
-- Developed by \*\*GAN\*\*  
-- Academic Research Project – *De La Salle University – Dasmariñas*
+This project is intended for academic and research use only.  
+Feel free to use and modify it with attribution.
 
 ---
 
-\## 📜 License
+## 💌 Author
 
-- This project is intended for \*\*academic and research use only.\*\*  
-- Do \*\*not redistribute or commercialize\*\* without permission from the authors.
+Developed by **GAN**  
+🏫 *De La Salle University - Dasmariñas*
+
+---
