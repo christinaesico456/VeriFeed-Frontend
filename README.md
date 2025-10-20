@@ -1,29 +1,29 @@
-# VeriFeed Frontend
+# 🧠 VeriFeed Frontend
 
 VeriFeed is an AI-powered **deepfake detection system** designed as a **browser extension for Facebook**.  
 This repository contains the **frontend** built with **Vue.js 3 (Composition API)** and **Tailwind CSS**, providing a responsive, user-friendly interface that connects to the Django backend API.
 
 ---
 
-## 🧠 Overview
+## 🪄 Overview
 
 The VeriFeed frontend allows users to:
 
-- Detect deepfake videos on Facebook in real time.  
-- View AI-driven authenticity results (✅ Real / ⚠ Deepfake).  
-- Send and view user feedback.  
-- Access informational sections such as **About**, **Features**, **How It Works**, **FAQ**, and **Contact Us**.
+- 🎥 Detect deepfake videos on Facebook in real time  
+- 🧩 View AI-driven authenticity results (✅ Real / ⚠ Deepfake)  
+- 💬 Send and view user feedback  
+- 📚 Access informational sections such as **About**, **Features**, **How It Works**, **FAQ**, and **Contact Us**
 
 ---
 
 ## ✨ Features
 
-- 🎥 **Real-Time Detection UI** – Displays AI results seamlessly.  
-- 🧩 **Component-Based Architecture** – Clean and reusable Vue components.  
-- 💬 **Feedback System** – Authenticated users can rate and send feedback.  
-- 🛡 **Privacy-First** – Runs locally in the browser, no data upload.  
-- 📱 **Responsive Design** – Works smoothly on desktop and mobile.  
-- ⚡ **Animated Interface** – Smooth scroll and transition effects.
+- 🎥 **Real-Time Detection UI** – Displays AI detection results seamlessly  
+- 🧱 **Component-Based Architecture** – Modular, reusable Vue components  
+- 💬 **Feedback System** – Authenticated users can rate and send feedback  
+- 🛡 **Privacy-First** – Runs locally in the browser, no user data upload  
+- 📱 **Responsive Design** – Works on both desktop and mobile  
+- ⚡ **Smooth Animations** – Clean transitions and scroll effects  
 
 ---
 
@@ -44,41 +44,49 @@ The VeriFeed frontend allows users to:
 
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/verifeed-frontend.git
-cd verifeed-frontend
+git clone https://github.com/christinaesico456/VeriFeed-Frontend.git
+cd VeriFeed-Frontend
 
-2️⃣ Install Dependencies
-Requires Node 16+
-npm install
+### 2️⃣ Install Dependencies
+```bash
+npm install   # Requires Node 16+
 
-3️⃣ (Optional) Configure Tailwind
-If Tailwind isn’t initialized yet:
+### 3️⃣ (Optional) Configure Tailwind
+```bash
+npm install -D tailwindcss postcss autoprefixer   # If Tailwind isn’t initialized yet
+npx tailwindcss init -p 
 
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init -p
-Then ensure your tailwind.config.js contains:
+```js
+content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"]  # ensure your tailwind.config.js contains this
 
-content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"]
+---
 
-🔧 Configuration
-Create a .env file in the project root and add:
+## 🔧 Configuration
+- Create a .env file in the project root and add:
 
-VITE_API_BASE_URL=http://127.0.0.1:8000/api
-Adjust the URL if your backend runs on a different host or port.
+```bash
+VITE_API_BASE_URL=http://127.0.0.1:8000/api  # Adjust the URL if your backend runs on a different host or port.
 
-🚀 Run the Project
+---
 
-Development
-npm run dev
-The app runs by default at http://localhost:5173
+## 🚀 Run the Project
 
-Production Build
+### Development
+```bash
+npm run dev   # The app runs by default at http://localhost:5173
+
+### Production Build
+```bash
 npm run build
 
-Preview Production
+### Preview Production
+```bash
 npm run preview
 
-🧱 Project Structure
+---
+
+## 🧱 Project Structure
+```bash
 verifeed-frontend/
 ├── src/
 │   ├── assets/              # Images, logos, global styles
@@ -101,7 +109,10 @@ verifeed-frontend/
 ├── package.json
 └── tailwind.config.js
 
-📦 Dependencies
+---
+
+## 📦 Dependencies
+```json
 "dependencies": {
   "vue": "^3.x",
   "pinia": "^2.x",
@@ -114,31 +125,39 @@ verifeed-frontend/
   "postcss": "^8.x",
   "autoprefixer": "^10.x"
 }
-🔗 Backend Integration Guide
-The frontend communicates with the Django backend API (see Backend project).
 
-Backend Quick Setup
+---
 
-Run the Django backend:
+##🔗 Backend Integration Guide
+
+- The frontend communicates with the Django backend API (see Backend project).
+
+### Backend Quick Setup
+
+* Run the Django backend:
+```bash
 python manage.py runserver
 
-CORS Settings (already configured):
-In settings.py
-CORS_ALLOW_ALL_ORIGINS = True
+* CORS Settings (already configured):
+```python
+CORS_ALLOW_ALL_ORIGINS = True   # In settings.py
 
-Backend Endpoints:
-http://127.0.0.1:8000/api/accounts/ → Registration, Login, Profile
-http://127.0.0.1:8000/api/reviews/ → Feedback Endpoints
+* Backend Endpoints:
+- http://127.0.0.1:8000/api/accounts/ → Registration, Login, Profile
+- http://127.0.0.1:8000/api/reviews/ → Feedback Endpoints
 
-JWT Authentication:
+* JWT Authentication:
 Tokens (auth_token, refresh_token) are stored in localStorage.
 Protected actions (e.g., feedback submission) require a valid JWT.
 
-🧑‍💻 Author
-Developed by GAN
+---
 
-Academic Research Project – De La Salle University – Dasmariñas
+## 🧑‍💻 Author
+- Developed by GAN
+- Academic Research Project – De La Salle University – Dasmariñas
 
-📜 License
-This project is intended for academic and research use only.
-Do not redistribute or commercialize without permission from the authors.
+---
+
+## 📜 License
+- This project is intended for academic and research use only.
+- Do not redistribute or commercialize without permission from the authors.
