@@ -1,144 +1,156 @@
 # VeriFeed Frontend
 
-VeriFeed is an AI-powered **deepfake detection system** designed as a **browser extension for Facebook**.  
-This repository contains the **frontend** built with **Vue.js 3 (Composition API)** and **Tailwind CSS**, providing a responsive, user-friendly interface that connects to the Django backend API.
+A **Vue 3 + Tailwind CSS** web application integrated with a **Django backend API**.  
+This project is part of an **academic research project** at *De La Salle University - Dasmariñas*.
 
 ---
 
-## 🧠 Overview
+## 🧩 Features
 
-The VeriFeed frontend allows users to:
-
-- Detect deepfake videos on Facebook in real time.  
-- View AI-driven authenticity results (✅ Real / ⚠ Deepfake).  
-- Send and view user feedback.  
-- Access informational sections such as **About**, **Features**, **How It Works**, **FAQ**, and **Contact Us**.
-
----
-
-## ✨ Features
-
-- 🎥 **Real-Time Detection UI** – Displays AI results seamlessly.  
-- 🧩 **Component-Based Architecture** – Clean and reusable Vue components.  
-- 💬 **Feedback System** – Authenticated users can rate and send feedback.  
-- 🛡 **Privacy-First** – Runs locally in the browser, no data upload.  
-- 📱 **Responsive Design** – Works smoothly on desktop and mobile.  
-- ⚡ **Animated Interface** – Smooth scroll and transition effects.
+- 🎨 Modern UI with **Tailwind CSS**
+- ⚡ Fast development using **Vite**
+- 🧠 State management with **Pinia**
+- 🔗 API integration with **Axios**
+- 📱 Responsive and user-friendly interface
 
 ---
 
-## 🧩 Technologies Used
+## 🌿 Technologies Used
 
 | Type | Technology |
 |------|-------------|
-| Framework | [Vue.js 3](https://vuejs.org/) |
+| Framework | [Vue 3](https://vuejs.org/) |
 | Styling | [Tailwind CSS](https://tailwindcss.com/) |
-| Icons | [Heroicons](https://heroicons.com/) |
 | State Management | [Pinia](https://pinia.vuejs.org/) |
-| API Communication | Axios (via custom `api.js`) |
-| Build Tool | Vite |
+| API Communication | [Axios](https://axios-http.com/) |
+| Build Tool | [Vite](https://vitejs.dev/) |
 
 ---
 
 ## ⚙️ Installation Guide
 
+Follow these steps to run the project locally:
+
 ### 1️⃣ Clone the Repository
 ```bash
-git clone https://github.com/yourusername/verifeed-frontend.git
-cd verifeed-frontend
+git clone https://github.com/christinaesico456/VeriFeed-Frontend.git
+cd VeriFeed-Frontend
+```
 
-2️⃣ Install Dependencies
-Requires Node 16+
-npm install
+---
 
-3️⃣ (Optional) Configure Tailwind
-If Tailwind isn’t initialized yet:
+### 2️⃣ Install Dependencies
+```bash
+npm install   # Requires Node 16+
+```
 
+---
+
+### 3️⃣ (Optional) Configure Tailwind
+
+If Tailwind CSS isn’t initialized yet:
+```bash
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init -p
-Then ensure your tailwind.config.js contains:
+```
 
+Make sure your **tailwind.config.js** includes:
+```js
 content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"]
+```
 
-🔧 Configuration
-Create a .env file in the project root and add:
+---
 
-VITE_API_BASE_URL=http://127.0.0.1:8000/api
-Adjust the URL if your backend runs on a different host or port.
-
-🚀 Run the Project
-
-Development
+### 4️⃣ Run the Development Server
+```bash
 npm run dev
-The app runs by default at http://localhost:5173
+```
+The app should now be running at:  
+➡️ **http://localhost:5173/**
 
-Production Build
+---
+
+### 5️⃣ Build for Production
+```bash
 npm run build
+```
+The production-ready files will be generated in the **/dist** directory.
 
-Preview Production
-npm run preview
+---
 
-🧱 Project Structure
-verifeed-frontend/
-├── src/
-│   ├── assets/              # Images, logos, global styles
-│   ├── components/          # Vue components
-│   │   ├── Hero.vue
-│   │   ├── About.vue
-│   │   ├── Features.vue
-│   │   ├── HowItWorks.vue
-│   │   ├── FAQ.vue
-│   │   ├── Contacts.vue
-│   │   ├── FeedbackModal.vue
-│   │   ├── FeedbackList.vue
-│   ├── services/api.js      # Axios service for backend API
-│   ├── stores/auth.js       # Pinia store for auth state
-│   ├── App.vue              # Root component
-│   ├── main.js              # Entry point
+## 🗂️ Project Structure
+
+```bash
+VeriFeed-Frontend/
 ├── public/
-│   └── verifeed_logo.png    # Project logo
+│   └── favicon.ico
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── store/
+│   ├── App.vue
+│   └── main.js
+├── .gitignore
 ├── index.html
 ├── package.json
-└── tailwind.config.js
+├── postcss.config.js
+├── tailwind.config.js
+├── vite.config.js
+└── README.md
+```
+---
 
-📦 Dependencies
-"dependencies": {
-  "vue": "^3.x",
-  "pinia": "^2.x",
-  "axios": "^1.x",
-  "@heroicons/vue": "^2.x"
-},
-"devDependencies": {
-  "vite": "^5.x",
-  "tailwindcss": "^3.x",
-  "postcss": "^8.x",
-  "autoprefixer": "^10.x"
-}
-🔗 Backend Integration Guide
-The frontend communicates with the Django backend API (see Backend project).
+## 🧪 Development Notes
 
-Backend Quick Setup
+If you encounter issues with Node or NPM versions:
+```bash
+node -v   # Ensure Node 16+
+npm -v
+```
 
-Run the Django backend:
+To reset dependencies:
+```bash
+rm -rf node_modules package-lock.json
+npm install
+```
+
+---
+
+## 📦 Backend Integration Guide
+
+The frontend communicates with the Django backend API.
+
+### Run the Django backend:
+```bash
 python manage.py runserver
+```
 
-CORS Settings (already configured):
-In settings.py
+**CORS settings** (already configured in `settings.py`):
+```python
 CORS_ALLOW_ALL_ORIGINS = True
+```
 
-Backend Endpoints:
-http://127.0.0.1:8000/api/accounts/ → Registration, Login, Profile
-http://127.0.0.1:8000/api/reviews/ → Feedback Endpoints
+**Backend Endpoints:**
+- `http://127.0.0.1:8000/api/accounts/` → Registration, Login, Profile  
+- `http://127.0.0.1:8000/api/reviews/` → Feedback Endpoints  
 
-JWT Authentication:
-Tokens (auth_token, refresh_token) are stored in localStorage.
-Protected actions (e.g., feedback submission) require a valid JWT.
+**JWT Authentication:**
+- Tokens (`auth_token`, `refresh_token`) are stored in `localStorage`.
+- Protected actions (e.g., feedback submission) require a valid JWT.
 
-🧑‍💻 Author
-Developed by GAN
+---
 
-Academic Research Project – De La Salle University – Dasmariñas
+## 📄 License
 
-📜 License
-This project is intended for academic and research use only.
-Do not redistribute or commercialize without permission from the authors.
+This project is intended for academic and research use only.  
+Feel free to use and modify it with attribution.
+
+---
+
+## 💌 Author
+
+Developed by **GAN**  
+🏫 *De La Salle University - Dasmariñas*
+
+---
