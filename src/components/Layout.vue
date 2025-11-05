@@ -3,6 +3,7 @@ import { ref, onMounted } from "vue"
 import api from "../services/api.js"
 import FeedbackModal from "./FeedbackModal.vue"
 import Contacts from "./Contacts.vue"
+import Footer from "./Footer.vue"
 import { useAuthStore } from "../stores/auth.js"
 
 const auth = useAuthStore()
@@ -121,7 +122,6 @@ async function removeProfilePicture() {
     isUploadingPicture.value = false
   }
 }
-/* ---------------------------------------------------------- */
 
 async function fetchAndSetProfile() {
   try {
@@ -542,6 +542,7 @@ onMounted(() => {
       <slot />
       <Contacts @open-feedback="openFeedbackModal" @open-login="forceProfileDropdown" />
     </main>
+    <Footer />
 
     <!-- Feedback Modal -->
     <FeedbackModal
