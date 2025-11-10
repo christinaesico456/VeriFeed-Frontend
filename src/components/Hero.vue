@@ -1,13 +1,15 @@
 <template>
   <section
     id="home"
-    class="relative z-10 flex items-center justify-center w-full min-h-[90vh] px-6 py-16 text-center snap-start -mb-8"
+    class="relative z-10 flex items-center justify-center w-full min-h-[90vh] px-6 py-16 text-center snap-start -mb-8 overflow-hidden"
   >
     <div class="w-full max-w-5xl">
       <div class="pt-28"></div>
 
-      <!-- Hero Heading -->
-      <h1 class="mb-6 text-6xl font-extrabold md:text-8xl lg:text-9xl">
+      <!-- Hero Heading (animated) -->
+      <h1
+        class="mb-6 text-6xl font-extrabold opacity-0 md:text-8xl lg:text-9xl animate-fadeUpSlow"
+      >
         <span
           class="text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text drop-shadow-[0_5px_25px_rgba(59,130,246,0.6)]"
         >
@@ -15,14 +17,18 @@
         </span>
       </h1>
 
-      <!-- Description -->
-      <p class="max-w-3xl mx-auto mb-10 text-lg leading-relaxed text-gray-300 md:text-xl">
+      <!-- Description (animated with delay) -->
+      <p
+        class="max-w-3xl mx-auto mb-10 text-lg leading-relaxed text-gray-300 delay-300 opacity-0 md:text-xl animate-fadeUpSlow"
+      >
         Detect deepfakes with ease. VeriFeed uses advanced AI technology to keep
         your content authentic and your digital world safe.
       </p>
 
       <!-- Buttons -->
-      <div class="flex flex-col justify-center gap-6 mb-10 sm:flex-row">
+      <div
+        class="flex flex-col justify-center gap-6 mb-10 opacity-0 sm:flex-row animate-fadeUpSlow delay-600"
+      >
         <button
           @click="scrollToSection('about')"
           class="px-12 py-4 text-lg font-semibold text-white transition-all transform rounded-full bg-gradient-to-r from-blue-600 to-purple-600 hover:scale-105 hover:shadow-lg"
@@ -38,7 +44,9 @@
       </div>
 
       <!-- Laptop Mockup -->
-      <div class="relative flex justify-center w-full max-w-6xl mx-auto mt-[-0.5rem]">
+      <div
+        class="relative flex justify-center w-full max-w-6xl mx-auto mt-[-0.5rem] opacity-0 animate-fadeUpSlow delay-900"
+      >
         <img
           src="/laptop_mockup.png"
           alt="Laptop mockup"
@@ -76,10 +84,15 @@
                     ></div>
                     <div>
                       <div class="flex items-center gap-1">
-                        <h3 class="text-sm font-semibold text-gray-900 cursor-pointer hover:underline">
+                        <h3
+                          class="text-sm font-semibold text-gray-900 cursor-pointer hover:underline"
+                        >
                           {{ post.name }}
                         </h3>
-                        <span class="text-sm text-blue-500 cursor-pointer hover:underline">• Follow</span>
+                        <span
+                          class="text-sm text-blue-500 cursor-pointer hover:underline"
+                          >• Follow</span
+                        >
                       </div>
                       <div class="text-xs text-gray-500">
                         {{ post.time }} <span class="mx-1">·</span> <span>🌍</span>
@@ -110,7 +123,9 @@
                     <div
                       class="absolute transition-all duration-300 transform bg-white border border-gray-100 rounded-lg shadow-xl top-3 right-3 w-80 hover:scale-105 hover:shadow-2xl"
                     >
-                      <div class="flex items-center justify-between px-4 py-3 border-b border-gray-100">
+                      <div
+                        class="flex items-center justify-between px-4 py-3 border-b border-gray-100"
+                      >
                         <div class="flex items-center space-x-2">
                           <div
                             class="flex items-center justify-center w-5 h-5 rounded"
@@ -141,7 +156,9 @@
                           </div>
                           <h4
                             class="text-sm font-semibold"
-                            :class="post.status === 'Authentic' ? 'text-green-700' : 'text-orange-700'"
+                            :class="post.status === 'Authentic'
+                              ? 'text-green-700'
+                              : 'text-orange-700'"
                           >
                             {{ post.status }}
                           </h4>
@@ -152,12 +169,16 @@
                           VeriFeed
                         </span>
                       </div>
-                      <div class="px-4 py-3 text-sm leading-snug text-gray-800">
+                      <div
+                        class="px-4 py-3 text-sm leading-snug text-gray-800"
+                      >
                         <p class="mb-1 font-semibold">
                           How sure we are:
                           <span class="font-bold">{{ post.confidence }}%</span>
                         </p>
-                        <div class="w-full h-2 mb-2 overflow-hidden bg-gray-100 rounded-full">
+                        <div
+                          class="w-full h-2 mb-2 overflow-hidden bg-gray-100 rounded-full"
+                        >
                           <div
                             class="h-2 rounded-full"
                             :class="post.status === 'Authentic'
@@ -169,14 +190,23 @@
                         <p class="mb-1 text-xs text-gray-600">
                           We are very confident
                         </p>
-                        <p class="text-xs text-gray-500" v-if="post.status === 'Authentic'">
-                          This video is genuine and has not been edited by artificial intelligence.
+                        <p
+                          class="text-xs text-gray-500"
+                          v-if="post.status === 'Authentic'"
+                        >
+                          This video is genuine and has not been edited by
+                          artificial intelligence.
                         </p>
                         <p class="text-xs text-gray-500" v-else>
-                          This video may have been edited or created by artificial intelligence. Please verify it before sharing.
+                          This video may have been edited or created by
+                          artificial intelligence. Please verify it before
+                          sharing.
                         </p>
-                        <p class="mt-2 text-[11px] text-gray-400 border-t border-gray-100 pt-1">
-                          Computer check • This is just a guess • Always check with other sources
+                        <p
+                          class="mt-2 text-[11px] text-gray-400 border-t border-gray-100 pt-1"
+                        >
+                          Computer check • This is just a guess • Always check
+                          with other sources
                         </p>
                       </div>
                     </div>
@@ -184,7 +214,9 @@
                 </div>
 
                 <!-- Reaction summary -->
-                <div class="flex items-center justify-between px-4 py-2 text-xs text-gray-600 border-t border-gray-100">
+                <div
+                  class="flex items-center justify-between px-4 py-2 text-xs text-gray-600 border-t border-gray-100"
+                >
                   <div class="flex items-center space-x-1">
                     <span>👍❤️</span><span>{{ post.reactions }}K</span>
                   </div>
@@ -233,16 +265,40 @@ const posts = [
   },
 ];
 
-// 🔹 Smooth scroll function
 function scrollToSection(sectionId) {
   const el = document.getElementById(sectionId);
-  if (el) {
-    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 </script>
 
 <style scoped>
+/* --- Animation for Hero Section --- */
+@keyframes fadeUpSlow {
+  0% {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-fadeUpSlow {
+  animation: fadeUpSlow 1.2s ease-out forwards;
+}
+
+/* Delay utilities */
+.delay-300 {
+  animation-delay: 0.3s;
+}
+.delay-600 {
+  animation-delay: 0.6s;
+}
+.delay-900 {
+  animation-delay: 0.9s;
+}
+
+/* Scrollbar + FB Buttons (unchanged) */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: rgba(107, 114, 128, 0.6) rgba(229, 231, 235, 0.5);
@@ -271,10 +327,7 @@ function scrollToSection(sectionId) {
   color: #4b5563;
   background-color: transparent;
   border-radius: 0.375rem;
-  transition:
-    background-color 0.3s ease,
-    transform 0.2s ease,
-    color 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, color 0.2s ease;
 }
 
 .fb-btn:hover {
