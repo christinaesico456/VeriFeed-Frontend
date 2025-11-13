@@ -3,7 +3,7 @@
     <div class="w-full max-w-lg p-6 bg-white rounded-2xl">
       <h3 class="mb-4 text-lg font-bold text-center">Create account</h3>
 
-      <!-- ADDED: Profile picture upload section -->
+      <!-- Profile picture upload section -->
       <div class="flex flex-col items-center mb-4">
         <div class="relative flex items-center justify-center overflow-hidden border-2 border-gray-300 border-dashed rounded-full w-28 h-28">
           <img
@@ -32,7 +32,7 @@
         <input v-model="fullName" placeholder="Full name (First Last)" class="w-full px-3 py-2 border rounded" />
         <input v-model="email" type="email" placeholder="Email" class="w-full px-3 py-2 border rounded" />
 
-        <!-- ADDED: birthday field (visible input for user) -->
+        <!-- birthday field (visible input for user) -->
         <div class="relative">
           <input
             v-model="birthday"
@@ -82,7 +82,7 @@ export default {
     const previewImage = ref(null)
     const isLoading = ref(false)
     const error = ref(null)
-    const birthday = ref('') // ADDED: birthday field (backend + visible input)
+    const birthday = ref('') // birthday field (backend + visible input)
 
     function onFileChange(e) {
       const file = e.target.files[0] || null
@@ -109,7 +109,7 @@ export default {
       formData.append('email', email.value)
       formData.append('password', password.value)
       formData.append('confirm_password', confirmPassword.value)
-      formData.append('birthday', birthday.value) // ADDED: birthday field (backend)
+      formData.append('birthday', birthday.value) // birthday field (backend)
       if (profilePicture.value) {
         formData.append('profile_picture', profilePicture.value)
       }
@@ -138,7 +138,7 @@ export default {
       submit,
       isLoading,
       error,
-      birthday // ADDED: birthday field (backend + visible input)
+      birthday // birthday field (backend + visible input)
     }
   }
 }

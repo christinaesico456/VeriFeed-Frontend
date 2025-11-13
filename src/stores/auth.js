@@ -1,7 +1,3 @@
-// src/stores/auth.js
-// Pinia store to manage auth state across the app.
-// Run: npm i pinia (if not installed). Register createPinia() in main.js (instructions below).
-
 import { defineStore } from 'pinia'
 import api from '../services/api.js'
 
@@ -42,7 +38,7 @@ export const useAuthStore = defineStore('auth', {
       }
     },
 
-    async register(formData /* FormData */) {
+    async register(formData) {
       this.isLoading = true
       this.error = null
       try {

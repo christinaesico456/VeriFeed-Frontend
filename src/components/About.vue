@@ -14,12 +14,18 @@
         </p>
       </div>
 
-      <!-- Right image mockup -->
+      <!-- Right image with simple effects -->
       <div class="flex justify-center">
-        <div class="p-3 border border-gray-700 shadow-2xl w-60 h-[500px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-3xl">
-          <div class="relative w-full h-full overflow-hidden bg-black rounded-2xl">
-            <div class="absolute w-20 h-1 transform -translate-x-1/2 bg-gray-600 rounded-full top-4 left-1/2"></div>
-          </div>
+        <div class="relative group">
+          <!-- Subtle glow -->
+          <div class="absolute transition-opacity duration-500 -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-3xl blur-xl opacity-20 group-hover:opacity-40"></div>
+          
+          <!-- Image -->
+          <img 
+            src="/extension1.png" 
+            alt="VeriFeed Extension Interface" 
+            class="relative z-10 w-full max-w-xs transition-all duration-300 shadow-2xl rounded-2xl hover:scale-105 hover:shadow-purple-500/50"
+          />
         </div>
       </div>
     </div>

@@ -16,6 +16,9 @@ const isScrolled = ref(false)
 const showAbout = ref(false)
 const authTab = ref("login")
 
+// Mobile menu state
+const showMobileMenu = ref(false)
+
 // Feedback states
 const showFeedback = ref(false)
 const isBackendConnected = ref(false)
@@ -104,7 +107,16 @@ function toggleProfile() {
   showProfile.value = !showProfile.value
 }
 
-/* ---------------- PROFILE PICTURE HANDLERS ---------------- */
+function toggleMobileMenu() {
+  showMobileMenu.value = !showMobileMenu.value
+}
+
+function closeMobileMenu() {
+  showMobileMenu.value = false
+  showAbout.value = false
+}
+
+/* -- PROFILE PICTURE HANDLERS -- */
 function triggerProfilePictureUpload() {
   if (profilePictureInput.value) {
     profilePictureInput.value.click()
@@ -209,7 +221,7 @@ async function removeProfilePicture() {
   try {
     const response = await api.removeProfilePicture()
     
-    // ✅ Update userData with default picture
+    // Update userData with default picture
     if (response.user) {
       userData.value = {
         ...userData.value,
@@ -220,7 +232,7 @@ async function removeProfilePicture() {
       userData.value.profile_picture = response.profile_picture_url
     }
     
-    // ✅ Update localStorage
+    // Update localStorage
     localStorage.setItem("user", JSON.stringify(userData.value))
     
   } catch (err) {
@@ -248,13 +260,13 @@ async function fetchAndSetProfile() {
   }
 }
 
-/* ---------------- 2FA LOGIN FLOW ---------------- */
+/* -- 2FA LOGIN FLOW -- */
 async function login() {
   errorMessage.value = ""
   otpError.value = null
   
   try {
-    // Step 1: Request OTP
+    // Request OTP
     const response = await api.requestOTP({
       usernameOrEmail: loginForm.value.email,
       password: loginForm.value.password
@@ -282,14 +294,14 @@ async function handleOTPComplete(otpCode) {
   isVerifyingOTP.value = true
   
   try {
-    // Step 2: Verify OTP
+    // Verify OTP
     const response = await api.verifyOTP(
       pendingCredentials.value,
       otpCode,
       otpPurpose.value
     )
     
-    // Success! Update UI
+    // Success, Update UI
     await fetchAndSetProfile()
     isLoggedIn.value = true
     showProfile.value = false
@@ -339,7 +351,7 @@ function closeOTPModal() {
   otpError.value = null
 }
 
-/* ---------------- SIGNUP (keeping original for now) ---------------- */
+/* -- SIGNUP -- */
 async function signup() {
   errorMessage.value = ""
   otpError.value = null
@@ -351,10 +363,10 @@ async function signup() {
   }
   
   try {
-    // Step 1: Register user (creates account but not logged in yet)
+    // Register user (creates account but not logged in yet)
     await api.registerUser(signupForm.value)
     
-    // Step 2: Request OTP for the new account
+    // Request OTP for the new account
     const response = await api.requestOTP({
       usernameOrEmail: signupForm.value.email,
       password: signupForm.value.password
@@ -399,8 +411,16 @@ function logout() {
 onMounted(() => {
   document.addEventListener("click", (e) => {
     const navbar = document.querySelector("#navbar")
+    const mobileMenu = document.querySelector("#mobile-menu")
+    const hamburger = document.querySelector("#hamburger-button")
+    
     if (navbar && !navbar.contains(e.target)) {
       showAbout.value = false
+    }
+    
+    // Close mobile menu if clicking outside
+    if (mobileMenu && hamburger && !mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      showMobileMenu.value = false
     }
   })
 })
@@ -449,7 +469,7 @@ onMounted(() => {
           />
         </div>
 
-        <!-- Nav links -->
+        <!-- Desktop Nav links -->
         <div class="items-center hidden space-x-10 md:flex">
           <a
             href="#home"
@@ -541,7 +561,7 @@ onMounted(() => {
             Contacts
           </a>
 
-          <!-- Profile Button -->
+          <!-- Profile Button (Desktop) -->
           <div class="relative">
             <button
               @click="toggleProfile"
@@ -630,6 +650,14 @@ onMounted(() => {
                   </div>
                 </div>
 
+                <input
+                  ref="profilePictureInput"
+                  type="file"
+                  accept="image/*"
+                  class="hidden"
+                  @change="handleProfilePictureUpload"
+                />
+
                 <div class="flex gap-2 mb-4">
                   <button
                     @click="triggerProfilePictureUpload"
@@ -700,7 +728,7 @@ onMounted(() => {
                     class="w-full px-3 py-2 mb-3 text-gray-800 placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <p class="mb-1 text-xs text-center text-gray-500 whitespace-nowrap">
-                    Don’t have an account yet?
+                    Don't have an account yet?
                     <button
                       @click="authTab = 'signup'"
                       class="font-semibold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:opacity-80"
@@ -779,6 +807,159 @@ onMounted(() => {
               </div>
             </div>
           </div>
+        </div>
+
+        <!-- Mobile: Hamburger + Profile -->
+        <div class="flex items-center gap-4 md:hidden">
+          <!-- Profile Button (Mobile) -->
+          <button
+            @click="toggleProfile"
+            class="relative w-10 h-10 overflow-hidden transition-transform border-2 rounded-full hover:scale-105"
+            :class="isScrolled ? 'border-gray-800' : 'border-white'"
+          >
+            <img
+              :src="profilePictureUrl"
+              :alt="userData.username || 'Profile'"
+              class="object-cover w-full h-full"
+              :key="profilePictureUrl"
+              @error="$event.target.src = '/profile_placeholder.png'"
+            />
+            <div
+              v-if="isLoggedIn"
+              class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"
+            ></div>
+          </button>
+
+          <!-- Hamburger Button -->
+          <button
+            id="hamburger-button"
+            @click="toggleMobileMenu"
+            class="relative z-50 w-10 h-10 flex flex-col justify-center items-center gap-1.5 transition-all"
+            :class="isScrolled ? 'text-gray-800' : 'text-white'"
+          >
+            <span
+              class="block w-6 h-0.5 bg-current transition-all duration-300"
+              :class="showMobileMenu ? 'rotate-45 translate-y-2' : ''"
+            ></span>
+            <span
+              class="block w-6 h-0.5 bg-current transition-all duration-300"
+              :class="showMobileMenu ? 'opacity-0' : ''"
+            ></span>
+            <span
+              class="block w-6 h-0.5 bg-current transition-all duration-300"
+              :class="showMobileMenu ? '-rotate-45 -translate-y-2' : ''"
+            ></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="overflow-hidden transition-all duration-300 ease-in-out md:hidden"
+        :class="[
+          showMobileMenu ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0',
+          isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-blue-900/95 backdrop-blur-md'
+        ]"
+      >
+        <div class="px-8 py-4 space-y-3">
+          <a
+            href="#home"
+            @click="closeMobileMenu"
+            class="block py-2 text-sm font-medium tracking-wide uppercase transition-colors"
+            :class="isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-400'"
+          >
+            Home
+          </a>
+
+          <!-- Mobile About Section -->
+          <div>
+            <button
+              @click="toggleAbout"
+              class="flex items-center justify-between w-full py-2 text-sm font-medium tracking-wide uppercase transition-colors"
+              :class="isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-400'"
+            >
+              About
+              <svg
+                class="w-4 h-4 transition-transform"
+                :class="showAbout ? 'rotate-180' : ''"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+            <div
+              v-if="showAbout"
+              class="pl-4 mt-2 space-y-2 border-l-2"
+              :class="isScrolled ? 'border-gray-300' : 'border-blue-400'"
+            >
+              <a
+                href="#about"
+                @click="closeMobileMenu"
+                class="block py-1 text-sm transition-colors"
+                :class="isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-300'"
+              >
+                Overview
+              </a>
+              <a
+                href="#features"
+                @click="closeMobileMenu"
+                class="block py-1 text-sm transition-colors"
+                :class="isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-300'"
+              >
+                Features
+              </a>
+              <a
+                href="#how"
+                @click="closeMobileMenu"
+                class="block py-1 text-sm transition-colors"
+                :class="isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-300'"
+              >
+                How it Works
+              </a>
+              <a
+                href="#sneakpeek"
+                @click="closeMobileMenu"
+                class="block py-1 text-sm transition-colors"
+                :class="isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-300'"
+              >
+                Video Sneak Peek
+              </a>
+              <a
+                href="#faq"
+                @click="closeMobileMenu"
+                class="block py-1 text-sm transition-colors"
+                :class="isScrolled ? 'text-gray-700 hover:text-blue-600' : 'text-white/90 hover:text-blue-300'"
+              >
+                FAQ
+              </a>
+            </div>
+          </div>
+
+          <a
+            href="#install"
+            @click="closeMobileMenu"
+            class="block py-2 text-sm font-medium tracking-wide uppercase transition-colors"
+            :class="isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-400'"
+          >
+            Install
+          </a>
+
+          <a
+            href="#contacts"
+            @click="closeMobileMenu"
+            class="block py-2 text-sm font-medium tracking-wide uppercase transition-colors"
+            :class="isScrolled ? 'text-gray-800 hover:text-blue-600' : 'text-white hover:text-blue-400'"
+          >
+            Contacts
+          </a>
         </div>
       </div>
     </nav>
@@ -933,6 +1114,4 @@ onMounted(() => {
 .underline-slide {
   transition: left 0.4s ease-in-out;
 }
-
-
 </style>

@@ -25,7 +25,7 @@
         controls
         class="object-cover w-full h-full bg-black rounded-2xl"
       >
-        <!-- ✅ Place your video inside public/videos folder -->
+        <!-- Main Video -->
         <source src="/sample_video.mp4" type="video/mp4" />
         Your browser does not support video playback.
       </video>

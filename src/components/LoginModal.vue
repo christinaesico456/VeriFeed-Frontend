@@ -103,7 +103,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style scoped>
-/* optional: make modal a little smoother */
-</style>

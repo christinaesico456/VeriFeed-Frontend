@@ -160,7 +160,7 @@ export default {
         headers: { "Content-Type": "multipart/form-data" },
       })
       
-      // ✅ Add cache-busting timestamp to the URL
+      // Add cache-busting timestamp to the URL
       const data = response.data
       if (data.profile_picture_url) {
         data.profile_picture_url = `${data.profile_picture_url}?v=${Date.now()}`
@@ -179,7 +179,7 @@ export default {
     try {
       const response = await api.delete("/accounts/remove-profile-picture/")
       
-      // ✅ Add cache-busting timestamp to the URL
+      // Add cache-busting timestamp to the URL
       const data = response.data
       if (data.profile_picture_url) {
         data.profile_picture_url = `${data.profile_picture_url}?v=${Date.now()}`

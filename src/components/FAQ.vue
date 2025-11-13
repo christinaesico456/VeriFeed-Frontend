@@ -1,7 +1,7 @@
 <template>
   <section class="flex items-center justify-center w-full min-h-screen px-6 snap-start">
     <div class="w-full max-w-3xl mx-auto">
-      <!-- Title (unchanged) -->
+      <!-- Title -->
       <h2 class="mb-12 text-4xl font-extrabold text-center text-white md:text-5xl">
         Frequently Asked Questions
       </h2>

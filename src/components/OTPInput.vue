@@ -188,25 +188,24 @@ watch(() => props.expiresIn, () => {
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-  color: #1f2937; /* dark gray text */
-  border: 2px solid #d1d5db; /* light gray visible border */
+  color: #1f2937; 
+  border: 2px solid #d1d5db; 
   border-radius: 12px;
   outline: none;
-  background: #ffffff; /* solid white background for visibility */
+  background: #ffffff; 
   transition: all 0.25s ease-in-out;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
 .otp-box:focus {
-  border-color: #a855f7; /* violet border when focused */
+  border-color: #a855f7; 
   box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
 }
 
 .otp-box:hover {
-  border-color: #8b5cf6; /* subtle hover color */
+  border-color: #8b5cf6;
 }
 
-/* Optional — make active digits slightly highlighted */
 .otp-box:not(:placeholder-shown) {
   background: #ffffff;
   border-color: #c3c2c4;

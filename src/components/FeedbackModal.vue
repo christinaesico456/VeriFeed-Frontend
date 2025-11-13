@@ -13,7 +13,7 @@ export default {
     const isSubmitting = ref(false)
     const error = ref(null)
 
-    // ✅ DEBUG METHOD - Add this for testing
+    // DEBUG METHOD
     async function debugAuth() {
       console.log('🧪 DEBUG: Checking authentication status')
       
@@ -138,7 +138,7 @@ export default {
       <!-- Title -->
       <h3 class="mb-3 text-lg font-bold text-gray-900">Send Feedback</h3>
 
-      <!-- ⭐ Rating -->
+      <!-- Rating -->
       <div class="flex justify-center gap-2 mb-4">
         <svg
           v-for="star in 5"

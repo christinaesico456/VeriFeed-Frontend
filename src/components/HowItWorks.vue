@@ -105,7 +105,7 @@ const steps = [
   transform: translateY(0);
 }
 
-/* Optional class to handle scroll reveal manually */
+/* handle scroll reveal manually */
 .fade-up-enter-active.show {
   opacity: 1 !important;
   transform: translateY(0) !important;

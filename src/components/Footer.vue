@@ -59,11 +59,11 @@
           </div>
         </div>
 
-        <!-- Social + CTA (aligned, with “Follow us”) -->
+        <!-- Social + CTA -->
         <div class="flex flex-col items-start justify-center gap-4 md:items-end">
           <!-- Follow Us + Social Icons -->
           <div class="flex flex-col items-start gap-2 md:items-end">
-            <h4 class="text-sm font-semibold text-gray-200">Follow us</h4>
+            <h4 class="text-sm font-semibold text-gray-200">Check us</h4>
 
             <div class="flex items-center gap-3">
               <!-- Facebook -->

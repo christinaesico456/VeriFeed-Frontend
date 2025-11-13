@@ -3,14 +3,14 @@ import api from '../services/api.js'
 
 export default {
   props: {
-    refresh: { type: Number, default: 0 } // kapag nag-submit ng bagong feedback
+    refresh: { type: Number, default: 0 } 
   },
   data() {
     return {
-      feedbacks: [], // dito talaga dapat array (recent_reviews)
-      summary: null, // para sa ibang info (average, total, breakdown)
+      feedbacks: [], 
+      summary: null,
       loading: false,
-      defaultAvatar: '/profile_pics/default.jpg' // fallback image kung walang picture
+      defaultAvatar: '/profile_pics/default.jpg' 
     }
   },
   mounted() {
@@ -25,10 +25,10 @@ export default {
     async load() {
       this.loading = true
       try {
-        // ✅ FIXED: Use public API call (no authentication required)
+        // Use public API call (no authentication required)
         const data = await api.getFeedbacks("General")
-        this.feedbacks = data.recent_reviews || [] // ✅ feedbacks = array lang
-        this.summary = data // ✅ save summary info din
+        this.feedbacks = data.recent_reviews || [] // feedbacks = array 
+        this.summary = data // save summary info din
       } catch (err) {
         console.error("Failed to load feedbacks", err)
         this.feedbacks = []
@@ -40,7 +40,7 @@ export default {
       if (!date) return ''
       return new Date(date).toLocaleString()
     },
-    // ✅ NEW: Function to get user avatar URL
+    // Function to get user avatar URL
     getUserAvatar(feedback) {
       if (feedback.user_picture) {
         // If user_picture already has full URL, return it
@@ -52,7 +52,7 @@ export default {
       }
       return this.defaultAvatar
     },
-    // ✅ NEW: Function to display rating stars
+    // Function to display rating stars
     getStars(rating) {
       if (!rating) return ''
       return '★'.repeat(rating) + '☆'.repeat(5 - rating)
@@ -69,7 +69,7 @@ export default {
     <div class="w-full max-w-3xl p-8 shadow-xl bg-white/10 backdrop-blur rounded-2xl">
       <h2 class="mb-6 text-3xl font-bold text-center text-white">User Feedback</h2>
 
-      <!-- ✅ FIXED: Show summary stats if available -->
+      <!-- Show summary stats if available -->
       <div v-if="summary && summary.total_reviews > 0" class="mb-6 text-center text-white/80">
         <p class="text-lg">
           Average Rating: <span class="font-bold text-yellow-400">{{ summary.average_rating }}/5</span>
@@ -82,7 +82,7 @@ export default {
         Loading feedback...
       </div>
 
-      <!-- May feedback -->
+      <!-- Feedback -->
       <div
         v-else-if="feedbacks.length > 0"
         class="space-y-4 max-h-[60vh] overflow-y-auto pr-2"
@@ -92,7 +92,7 @@ export default {
           :key="fb.id || index"
           class="flex items-start gap-3 p-4 shadow-md bg-white/20 rounded-xl"
         >
-          <!-- ✅ FIXED: profile picture with proper URL handling -->
+          <!-- Profile picture with proper URL handling -->
           <img
             :src="getUserAvatar(fb)"
             alt="avatar"
@@ -104,13 +104,13 @@ export default {
               <div class="font-semibold text-white">
                 {{ fb.user_name || 'Anonymous' }}
               </div>
-              <!-- ✅ FIXED: Show rating stars -->
+              <!-- Show rating stars -->
               <div v-if="fb.rating" class="text-yellow-400">
                 {{ getStars(fb.rating) }}
               </div>
             </div>
             
-            <!-- ✅ FIXED: Show both title and comment -->
+            <!-- FIXED: Show both title and comment -->
             <div v-if="fb.title" class="mb-1 font-medium text-blue-200">
               {{ fb.title }}
             </div>
@@ -124,7 +124,7 @@ export default {
         </div>
       </div>
 
-      <!-- Walang feedback -->
+      <!-- No feedback -->
       <div v-else class="italic text-center text-gray-300">
         No feedback submitted yet.
       </div>
