@@ -187,7 +187,7 @@
               :disabled="!hasAgreed"
               :class="[
                 'relative px-10 py-3.5 overflow-hidden text-sm font-semibold text-white transition-all duration-200 rounded-full',
-                hasAgreed ? 'hover:scale-130 cursor-pointer' : 'opacity-50 cursor-not-allowed'
+                hasAgreed ? 'hover:scale-115 cursor-pointer' : 'opacity-50 cursor-not-allowed'
               ]"
             >
               <!-- Gradient Background -->

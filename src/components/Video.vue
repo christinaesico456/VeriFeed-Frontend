@@ -1,4 +1,4 @@
-<template>
+<template> 
   <section
     id="sneakpeek"
     class="flex flex-col items-center justify-center w-full min-h-screen px-6 snap-start"
@@ -6,7 +6,7 @@
     <!-- Label -->
     <div
       class="inline-block px-4 py-1 mb-4 text-sm rounded-full bg-slate-800 text-white/90"
->
+    >
       Demo Video
     </div>
 
@@ -23,10 +23,13 @@
     >
       <video
         controls
+        autoplay
+        muted
+        playsinline
         class="object-cover w-full h-full bg-black rounded-2xl"
       >
         <!-- Main Video -->
-        <source src="/sample_video.mp4" type="video/mp4" />
+        <source src="/verifeed screen record.mp4" type="video/mp4" />
         Your browser does not support video playback.
       </video>
     </div>
