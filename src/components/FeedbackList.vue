@@ -41,17 +41,19 @@ export default {
       return new Date(date).toLocaleString()
     },
     // Function to get user avatar URL
-    getUserAvatar(feedback) {
-      if (feedback.user_picture) {
-        // If user_picture already has full URL, return it
-        if (feedback.user_picture.startsWith('http')) {
-          return feedback.user_picture
-        }
-        // If it's a relative path, construct full URL
-        return `http://127.0.0.1:8000${feedback.user_picture}`
-      }
-      return this.defaultAvatar
-    },
+getUserAvatar(feedback) {
+  const API_URL = import.meta.env.VITE_API_URL || "https://verifeed-backend-production.up.railway.app";
+
+  if (feedback.user_picture) {
+    // Already a full URL
+    if (feedback.user_picture.startsWith("http")) {
+      return feedback.user_picture;
+    }
+    // Build full URL from backend
+    return `${API_URL}${feedback.user_picture}`;
+  }
+  return this.defaultAvatar;
+},
     // Function to display rating stars
     getStars(rating) {
       if (!rating) return ''
