@@ -160,38 +160,57 @@ export default {
       })
       
       // Add cache-busting timestamp to the URL
-      const data = response.data
-      if (data.profile_picture_url) {
-        data.profile_picture_url = `${data.profile_picture_url}?v=${Date.now()}`
-      }
-      if (data.user && data.user.profile_picture) {
-        data.user.profile_picture = `${data.user.profile_picture}?v=${Date.now()}`
-      }
-      
-      return data
-    } catch (error) {
-      handleError(error, "Failed to upload profile picture")
+ const data = response.data
+    if (data.profile_picture_url) {
+      data.profile_picture_url = data.profile_picture_url.replace('http://', 'https://') + `?v=${Date.now()}`
     }
-  },
+    if (data.user && data.user.profile_picture) {
+      data.user.profile_picture = data.user.profile_picture.replace('http://', 'https://') + `?v=${Date.now()}`
+    }
+    
+    return data
+  } catch (error) {
+    handleError(error, "Failed to upload profile picture")
+  }
+},
 
-  async removeProfilePicture() {
-    try {
-      const response = await api.delete("/accounts/remove-profile-picture/")
-      
-      // Add cache-busting timestamp to the URL
-      const data = response.data
-      if (data.profile_picture_url) {
-        data.profile_picture_url = `${data.profile_picture_url}?v=${Date.now()}`
-      }
-      if (data.user && data.user.profile_picture) {
-        data.user.profile_picture = `${data.user.profile_picture}?v=${Date.now()}`
-      }
-      
-      return data
-    } catch (error) {
-      handleError(error, "Failed to remove profile picture")
+async removeProfilePicture() {
+  try {
+    const response = await api.delete("/accounts/remove-profile-picture/")
+    
+    // Force HTTPS and add cache-busting timestamp
+    const data = response.data
+    if (data.profile_picture_url) {
+      data.profile_picture_url = data.profile_picture_url.replace('http://', 'https://') + `?v=${Date.now()}`
     }
-  },
+    if (data.user && data.user.profile_picture) {
+      data.user.profile_picture = data.user.profile_picture.replace('http://', 'https://') + `?v=${Date.now()}`
+    }
+    
+    return data
+  } catch (error) {
+    handleError(error, "Failed to remove profile picture")
+  }
+},
+
+async getProfile() {
+  try {
+    const response = await api.get("/accounts/profile/")
+    const data = response.data
+    
+    // Force HTTPS on profile picture URL
+    if (data.profile_picture_url) {
+      data.profile_picture_url = data.profile_picture_url.replace('http://', 'https://')
+    }
+    if (data.profile_picture) {
+      data.profile_picture = data.profile_picture.replace('http://', 'https://')
+    }
+    
+    return data
+  } catch (error) {
+    handleError(error, "Failed to fetch profile")
+  }
+},
 
   // ========================
   // 2FA OTP METHODS

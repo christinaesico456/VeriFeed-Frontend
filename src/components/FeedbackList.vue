@@ -10,7 +10,7 @@ export default {
       feedbacks: [], 
       summary: null,
       loading: false,
-      defaultAvatar: '/profile_pics/default.jpg' 
+      defaultAvatar: 'https://verifeed-backend-production.up.railway.app/media/profile_pics/default.jpg'
     }
   },
   mounted() {
@@ -42,12 +42,12 @@ export default {
     },
     // Function to get user avatar URL
 getUserAvatar(feedback) {
-  const API_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || "https://verifeed-backend-production.up.railway.app";
+      const API_URL = "https://verifeed-backend-production.up.railway.app";
 
 
   if (feedback.user_picture) {
     if (feedback.user_picture.startsWith("http")) {
-      return feedback.user_picture;
+      return feedback.user_picture.replace('http://', 'https://');
     }
     return `${API_URL}${feedback.user_picture}`;
   }

@@ -58,19 +58,22 @@ const profilePictureUrl = computed(() => {
     return profilePicturePreview.value
   }
   
-  const API_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || "https://verifeed-backend-production.up.railway.app";
+  const API_URL = "https://verifeed-backend-production.up.railway.app";
   const baseUrl = userData.value.profile_picture || '/media/profile_pics/default.jpg'
   
   // If it's already a full URL, return it
-  if (baseUrl.startsWith('http')) {
+ if (baseUrl.startsWith('http')) {
+    // Force HTTPS
+    const httpsUrl = baseUrl.replace('http://', 'https://');
+    
     if (!baseUrl.includes('default.jpg')) {
-      const separator = baseUrl.includes('?') ? '&' : '?'
-      return `${baseUrl}${separator}v=${Date.now()}`
+      const separator = httpsUrl.includes('?') ? '&' : '?'
+      return `${httpsUrl}${separator}v=${Date.now()}`
     }
-    return baseUrl
+    return httpsUrl
   }
   
-  // Otherwise, prepend the API URL
+  // If it's a relative path, prepend API URL with HTTPS
   const fullUrl = `${API_URL}${baseUrl}`
   if (!baseUrl.includes('default.jpg')) {
     return `${fullUrl}?v=${Date.now()}`
