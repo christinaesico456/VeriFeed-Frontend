@@ -45,15 +45,16 @@ getUserAvatar(feedback) {
   const API_URL = import.meta.env.VITE_API_URL || "https://verifeed-backend-production.up.railway.app";
 
   if (feedback.user_picture) {
-    // Already a full URL
     if (feedback.user_picture.startsWith("http")) {
       return feedback.user_picture;
     }
-    // Build full URL from backend
     return `${API_URL}${feedback.user_picture}`;
   }
-  return this.defaultAvatar;
+
+  // Correct default avatar URL
+  return `${API_URL}/media/profile_pics/default.jpg`;
 },
+
     // Function to display rating stars
     getStars(rating) {
       if (!rating) return ''
