@@ -1,6 +1,9 @@
 import axios from "axios"
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "https://verifeed-backend-production.up.railway.app/api"
+
+console.log('🔍 API Base URL:', API_BASE_URL) // Debug log
+
 // ========================
 // Axios instances
 // ========================
