@@ -42,7 +42,8 @@ export default {
     },
     // Function to get user avatar URL
 getUserAvatar(feedback) {
-  const API_URL = import.meta.env.VITE_API_URL || "https://verifeed-backend-production.up.railway.app";
+  const API_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || "https://verifeed-backend-production.up.railway.app";
+
 
   if (feedback.user_picture) {
     if (feedback.user_picture.startsWith("http")) {

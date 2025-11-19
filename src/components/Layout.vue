@@ -58,14 +58,25 @@ const profilePictureUrl = computed(() => {
     return profilePicturePreview.value
   }
   
-  const baseUrl = userData.value.profile_picture || '/profile_pics/default.jpg'
+  const API_URL = import.meta.env.VITE_API_BASE_URL?.replace('/api', '') || "https://verifeed-backend-production.up.railway.app";
+  const baseUrl = userData.value.profile_picture || '/media/profile_pics/default.jpg'
   
-  if (baseUrl && !baseUrl.includes('default.jpg')) {
-    const separator = baseUrl.includes('?') ? '&' : '?'
-    return `${baseUrl}${separator}v=${Date.now()}`
+  // If it's already a full URL, return it
+  if (baseUrl.startsWith('http')) {
+    if (!baseUrl.includes('default.jpg')) {
+      const separator = baseUrl.includes('?') ? '&' : '?'
+      return `${baseUrl}${separator}v=${Date.now()}`
+    }
+    return baseUrl
   }
   
-  return baseUrl
+  // Otherwise, prepend the API URL
+  const fullUrl = `${API_URL}${baseUrl}`
+  if (!baseUrl.includes('default.jpg')) {
+    return `${fullUrl}?v=${Date.now()}`
+  }
+  
+  return fullUrl
 })
 
 function onSignupProfilePictureChange(e) {
