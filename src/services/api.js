@@ -15,7 +15,7 @@ const api = axios.create({
 
 const publicApi = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000,
+  timeout: 60000,
 })
 
 // ========================
