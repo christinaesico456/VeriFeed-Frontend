@@ -598,7 +598,7 @@ onMounted(() => {
             <!-- Profile Dropdown -->
             <div
               v-if="showProfile"
-              class="absolute right-0 z-30 p-6 mt-2 text-gray-800 bg-white border border-gray-200 shadow-2xl w-80 rounded-2xl"
+              class="absolute right-0 z-50 p-6 mt-2 text-gray-800 bg-white border border-gray-200 shadow-2xl w-80 rounded-2xl"
             >
               <!-- Logged In -->
               <div v-if="isLoggedIn">
@@ -824,11 +824,11 @@ onMounted(() => {
         </div>
 
         <!-- Mobile: Hamburger + Profile -->
-        <div class="flex items-center gap-4 md:hidden">
+        <div class="relative flex items-center gap-4 md:hidden">
           <!-- Profile Button (Mobile) -->
           <button
             @click="toggleProfile"
-            class="relative w-10 h-10 overflow-hidden transition-transform border-2 rounded-full hover:scale-105"
+            class="relative z-50 w-10 h-10 overflow-hidden transition-transform border-2 rounded-full hover:scale-105"
             :class="isScrolled ? 'border-gray-800' : 'border-white'"
           >
             <img
@@ -843,6 +843,234 @@ onMounted(() => {
               class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 border-2 border-white rounded-full"
             ></div>
           </button>
+ <!-- Profile Dropdown (Mobile) - FIXED POSITIONING -->
+          <div
+            v-if="showProfile"
+            class="fixed top-20 right-4 left-4 z-[60] p-6 text-gray-800 bg-white border border-gray-200 shadow-2xl rounded-2xl max-w-sm mx-auto max-h-[80vh] overflow-y-auto"
+          >
+            <!-- Same content as desktop dropdown -->
+            <!-- Logged In -->
+            <div v-if="isLoggedIn">
+              <div class="flex items-center mb-4">
+                <div class="relative">
+                  <img
+                    :src="profilePictureUrl"
+                    :alt="userData.username"
+                    :key="profilePictureUrl"
+                    class="object-cover w-16 h-16 mr-4 border-2 border-gray-200 rounded-full"
+                    @error="$event.target.src = '/profile_placeholder.png'"
+                  />
+                  <button
+                    @click="triggerProfilePictureUpload"
+                    :disabled="isUploadingPicture"
+                    class="absolute inset-0 flex items-center justify-center transition-opacity bg-black bg-opacity-50 rounded-full opacity-0 hover:opacity-100"
+                    title="Change profile picture"
+                  >
+                    <svg
+                      v-if="!isUploadingPicture"
+                      class="w-5 h-5 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9zM15 13a3 3 0 11-6 0 3 3 0 016 0z"
+                      />
+                    </svg>
+                  </button>
+                  <div
+                    v-if="isUploadingPicture"
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50 rounded-full"
+                  >
+                    <div class="w-5 h-5 border-2 border-white rounded-full border-t-transparent animate-spin"></div>
+                  </div>
+                  <div
+                    v-if="uploadSuccess"
+                    class="absolute inset-0 flex items-center justify-center transition-opacity bg-green-500 bg-opacity-75 rounded-full"
+                  >
+                    <svg
+                      class="w-6 h-6 text-white"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                <div class="flex-1">
+                  <p class="font-semibold text-gray-800">{{ userData.username }}</p>
+                  <p class="text-sm text-gray-500">{{ userData.email }}</p>
+                </div>
+              </div>
+
+              <input
+                ref="profilePictureInput"
+                type="file"
+                accept="image/*"
+                class="hidden"
+                @change="handleProfilePictureUpload"
+              />
+
+              <div class="flex gap-2 mb-4">
+                <button
+                  @click="triggerProfilePictureUpload"
+                  :disabled="isUploadingPicture"
+                  class="flex-1 px-3 py-2 text-sm text-blue-600 border border-blue-600 rounded-lg hover:bg-blue-50 disabled:opacity-50"
+                >
+                  {{ isUploadingPicture ? "Uploading..." : "Change Photo" }}
+                </button>
+                <button
+                  @click="openRemoveConfirm"
+                  :disabled="isUploadingPicture"
+                  class="px-3 py-2 text-sm text-red-600 border border-red-600 rounded-lg hover:bg-red-50 disabled:opacity-50"
+                >
+                  Remove
+                </button>
+              </div>
+
+              <button
+                @click="logout"
+                class="w-full py-2 text-sm text-white transition-all rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90"
+              >
+                Log Out
+              </button>
+            </div>
+
+            <!-- Not Logged In (Mobile) -->
+            <div v-else>
+              <!-- Tabs -->
+              <div class="relative flex justify-between pb-1 mb-6 border-b border-gray-200">
+                <button
+                  @click="authTab = 'login'"
+                  class="relative w-1/2 pb-2 font-medium text-center transition-all duration-300"
+                  :class="authTab === 'login'
+                    ? 'text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text'
+                    : 'text-gray-500 hover:text-gray-700'"
+                >
+                  Login
+                </button>
+                <button
+                  @click="authTab = 'signup'"
+                  class="relative w-1/2 pb-2 font-medium text-center transition-all duration-300"
+                  :class="authTab === 'signup'
+                    ? 'text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text'
+                    : 'text-gray-500 hover:text-gray-700'"
+                >
+                  Sign Up
+                </button>
+                <div
+                  class="absolute bottom-0 h-[2px] w-[40%] rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transition-all duration-500 ease-in-out"
+                  :class="authTab === 'login' ? 'left-[25%]' : 'left-[75%]'"
+                  style="transform: translateX(-50%);"
+                ></div>
+              </div>
+
+              <!-- Login Form -->
+              <div v-if="authTab === 'login'" class="animate-fadeIn">
+                <h2 class="mb-4 text-lg font-semibold text-gray-800">Welcome Back</h2>
+                <input
+                  v-model="loginForm.email"
+                  type="email"
+                  placeholder="Username"
+                  class="w-full px-3 py-2 mb-2 text-gray-800 placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <input
+                  v-model="loginForm.password"
+                  type="password"
+                  placeholder="Password"
+                  class="w-full px-3 py-2 mb-3 text-gray-800 placeholder-gray-400 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <p class="mb-1 text-xs text-center text-gray-500 whitespace-nowrap">
+                  Don't have an account yet?
+                  <button
+                    @click="authTab = 'signup'"
+                    class="font-semibold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:opacity-80"
+                  >
+                    Sign Up here
+                  </button>
+                </p>
+                <button
+                  @click="login"
+                  class="w-full py-2 mt-1 text-sm text-white transition-all rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90"
+                >
+                  Log In
+                </button>
+                <p v-if="errorMessage" class="mt-2 text-sm text-red-500">{{ errorMessage }}</p>
+              </div>
+
+              <!-- Signup Form -->
+              <div v-else class="animate-fadeIn">
+                <h2 class="mb-4 text-lg font-semibold text-gray-800">Create Account</h2>
+                <div class="flex flex-col items-center mb-4">
+                  <div
+                    class="relative flex items-center justify-center w-24 h-24 overflow-hidden border-2 border-gray-300 border-dashed rounded-full bg-gray-50"
+                  >
+                    <img
+                      v-if="signupPreviewImage"
+                      :src="signupPreviewImage"
+                      alt="Profile Preview"
+                      class="object-cover w-full h-full rounded-full"
+                    />
+                    <div v-else class="text-sm leading-tight text-center text-gray-500">
+                      <span class="block mb-1 text-3xl">+</span>
+                      <span>Add Photo</span>
+                    </div>
+                    <!-- ✅ CHANGE 9: Added unique ID for mobile signup profile input -->
+                    <input
+                      id="signupProfileInputMobile"
+                      type="file"
+                      accept="image/*"
+                      class="absolute inset-0 opacity-0 cursor-pointer"
+                      @change="onSignupProfilePictureChange"
+                    />
+                  </div>
+                  <p class="mt-2 text-xs text-gray-500">
+                    JPEG or PNG. Max 5MB.
+                  </p>
+                </div>
+                <input v-model="signupForm.full_name" type="text" placeholder="Full Name" class="input-field" />
+                <input v-model="signupForm.username" type="text" placeholder="Username" class="input-field" />
+                <input v-model="signupForm.email" type="email" placeholder="Email" class="input-field" />
+                <input
+                  v-model="signupForm.birthday"
+                  type="text"
+                  placeholder="dd/mm/yyyy"
+                  class="input-field"
+                  @focus="($event.target.type = 'date')"
+                  @blur="($event.target.type = 'text')"
+                />
+                <input v-model="signupForm.password" type="password" placeholder="Password" class="input-field" />
+                <input v-model="signupForm.confirm_password" type="password" placeholder="Confirm Password" class="mb-3 input-field" />
+                <button
+                  @click="signup"
+                  class="w-full py-2 mt-1 font-semibold text-white transition-all rounded-lg shadow-md bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 hover:opacity-90"
+                >
+                  Sign Up
+                </button>
+                <p class="mt-3 text-xs text-center text-gray-600">
+                  Already have an account?
+                  <button
+                    @click="authTab = 'login'"
+                    class="font-sem
+                     class="font-semibold text-transparent bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text hover:opacity-80
+                  >
+                    Log In here
+                  </button>
+                </p>
+                <p v-if="errorMessage" class="mt-2 text-sm text-red-500">{{ errorMessage }}</p>
+              </div>
+            </div>
+          </div>
 
           <!-- Hamburger Button -->
           <button
@@ -997,9 +1225,9 @@ onMounted(() => {
     <!-- Remove Confirmation Modal -->
     <div
       v-if="showRemoveConfirm"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+      class="fixed inset-0 flex items-center justify-center z-70 bg-black/60"
     >
-      <div class="w-full max-w-md p-6 bg-white shadow-2xl rounded-2xl">
+      <div class="w-full max-w-md p-6 mx-4 bg-white shadow-2xl rounded-2xl">
         <h3 class="mb-4 text-xl font-semibold text-center text-gray-800">
           Are you sure you want to remove your profile picture?
         </h3>
@@ -1024,7 +1252,7 @@ onMounted(() => {
     <!-- OTP Verification Modal -->
     <div
       v-if="showOTPModal"
-      class="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+      class="fixed inset-0 flex items-center justify-center px-4 z-70 bg-black/60"
       @click.self="closeOTPModal"
     >
       <div class="w-full max-w-md p-8 bg-white shadow-2xl rounded-2xl">
