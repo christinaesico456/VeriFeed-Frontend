@@ -323,8 +323,8 @@ const showUserAgreement = ref(false);
 // for checkbox agreement
 const hasAgreed = ref(false);
 
-// Chrome Web Store URL 
-const chromeStoreUrl = 'https://chrome.google.com/webstore/detail/your-extension-id';
+// Microsoft Edge Add-ons URL 
+const edgeStoreUrl = 'https://microsoftedge.microsoft.com/addons/detail/pjebiibiippeffhmimailefekjgcbgbm';
 
 // Prevent body scroll when modal is open
 watch([showModal, showUserAgreement], ([modal, agreement]) => {
