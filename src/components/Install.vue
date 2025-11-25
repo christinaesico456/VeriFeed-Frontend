@@ -45,10 +45,10 @@
         class="flex items-center justify-between w-full p-6 transition border rounded-lg border-slate-700 bg-slate-900/20 hover:bg-slate-900/30"
       >
         <div class="flex items-center gap-6">
-          <img src="/Google_icon.png" alt="Chrome" class="w-14 h-14" />
+          <img src="/Microsoft.png" alt="Microsoft Edge" class="w-14 h-14" />
           <div>
-            <p class="text-lg font-semibold text-white">VeriFeed for Chrome</p>
-            <p class="text-sm text-gray-400">Available on Chrome Web Store</p>
+            <p class="text-lg font-semibold text-white">VeriFeed for Microsoft Edge</p>
+            <p class="text-sm text-gray-400">Available on Microsoft Edge Add-ons</p>
           </div>
         </div>
 
@@ -325,7 +325,6 @@ const hasAgreed = ref(false);
 
 // Microsoft Edge Add-ons URL 
 const edgeStoreUrl = 'https://microsoftedge.microsoft.com/addons/detail/pjebiibiippeffhmimailefekjgcbgbm';
-
 // Prevent body scroll when modal is open
 watch([showModal, showUserAgreement], ([modal, agreement]) => {
   if (modal || agreement) {
@@ -337,10 +336,10 @@ watch([showModal, showUserAgreement], ([modal, agreement]) => {
 
 // Handle agree action
 const handleAgree = () => {
-  if (!hasAgreed.value) return; // Prevent action if not checked
+  if (!hasAgreed.value) return; 
   showModal.value = false;
-  hasAgreed.value = false; // Reset for next time
-  window.open(chromeStoreUrl, '_blank');
+  hasAgreed.value = false; 
+  window.open(edgeStoreUrl, '_blank');
 };
 </script>
 
