@@ -29,7 +29,7 @@
         class="object-cover w-full h-full bg-black rounded-2xl"
       >
         <!-- Main Video -->
-        <source src="/verifeed screen record.mp4" type="video/mp4" />
+        <source src="/VeriFeed Demo.mp4" type="video/mp4" />
         Your browser does not support video playback.
       </video>
     </div>
