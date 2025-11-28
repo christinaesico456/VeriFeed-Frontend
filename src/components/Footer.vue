@@ -53,7 +53,6 @@
             <ul class="space-y-2 text-sm text-gray-400">
               <li><a href="#about" class="transition hover:text-white">About</a></li>
               <li><a href="#contacts" class="transition hover:text-white">Contact</a></li>
-              <li><a href="#" class="transition hover:text-white">Privacy</a></li>
             </ul>
           </div>
         </div>
