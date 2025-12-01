@@ -40,9 +40,9 @@
         VeriFeed filters out fake news and harmful content directly in your feed.
       </p>
 
-      <!-- Link Preview -->
+      <!-- Link Preview - Microsoft Edge -->
       <div
-        class="flex items-center justify-between w-full p-6 transition border rounded-lg border-slate-700 bg-slate-900/20 hover:bg-slate-900/30"
+        class="flex items-center justify-between w-full p-6 mb-4 transition border rounded-lg border-slate-700 bg-slate-900/20 hover:bg-slate-900/30"
       >
         <div class="flex items-center gap-6">
           <img src="/Microsoft.png" alt="Microsoft Edge" class="w-14 h-14" />
@@ -52,9 +52,48 @@
           </div>
         </div>
 
-        <!-- Updated Button with Modal Trigger -->
+        <!-- Button with Modal Trigger -->
         <button
-          @click="showModal = true"
+          @click="openModal('edge')"
+          class="relative px-8 py-3 overflow-hidden text-sm font-semibold text-white transition-transform duration-300 rounded-full hover:scale-110 animate-popPulse"
+        >
+          <!-- Deep aurora gradient -->
+          <span
+            class="absolute inset-0 rounded-full bg-[linear-gradient(135deg,#1e3a8a,#4c1d95,#7e22ce,#9d174d)] bg-[length:300%_300%] animate-gradientFlow"
+          ></span>
+
+          <!-- Soft shimmer overlay -->
+          <span
+            class="absolute inset-0 bg-[linear-gradient(100deg,transparent_0%,rgba(255,255,255,0.1)_50%,transparent_100%)] animate-shimmer rounded-full"
+          ></span>
+
+          <!-- Ambient glow -->
+          <span
+            class="absolute inset-0 rounded-full opacity-40 blur-xl bg-[radial-gradient(circle,rgba(147,51,234,0.25),transparent_70%)] animate-pulseGlow"
+          ></span>
+
+          <!-- Text -->
+          <span class="relative z-10 tracking-wide drop-shadow-[0_4px_20px_rgba(147,51,234,0.5)]">
+            Get VeriFeed Now!
+          </span>
+        </button>
+      </div>
+
+      <!-- Link Preview - Chrome Web Store -->
+      <div
+        class="flex items-center justify-between w-full p-6 transition border rounded-lg border-slate-700 bg-slate-900/20 hover:bg-slate-900/30"
+      >
+        <div class="flex items-center gap-6">
+          <img src="/Google_icon.png" alt="Google Chrome" class="w-14 h-14" />
+          <div>
+            <p class="text-lg font-semibold text-white">VeriFeed for Google Chrome</p>
+            <p class="text-sm text-gray-400">Available on Chrome Web Store</p>
+          </div>
+        </div>
+
+        <!-- Button with Modal Trigger -->
+        <button
+          @click="openModal('chrome')"
           class="relative px-8 py-3 overflow-hidden text-sm font-semibold text-white transition-transform duration-300 rounded-full hover:scale-110 animate-popPulse"
         >
           <!-- Deep aurora gradient -->
@@ -323,8 +362,13 @@ const showUserAgreement = ref(false);
 // for checkbox agreement
 const hasAgreed = ref(false);
 
-// Microsoft Edge Add-ons URL 
+// track which browser was selected
+const selectedBrowser = ref('');
+
+// Browser store URLs
 const edgeStoreUrl = 'https://microsoftedge.microsoft.com/addons/detail/pjebiibiippeffhmimailefekjgcbgbm';
+const chromeStoreUrl = 'https://chromewebstore.google.com/detail/verifeed-deepfake-video-d/achegfhedagpghgdjdaijklhpnhjcllj';
+
 // Prevent body scroll when modal is open
 watch([showModal, showUserAgreement], ([modal, agreement]) => {
   if (modal || agreement) {
@@ -334,12 +378,20 @@ watch([showModal, showUserAgreement], ([modal, agreement]) => {
   }
 });
 
+// Open modal with browser selection
+const openModal = (browser) => {
+  selectedBrowser.value = browser;
+  showModal.value = true;
+};
+
 // Handle agree action
 const handleAgree = () => {
   if (!hasAgreed.value) return; 
   showModal.value = false;
   hasAgreed.value = false; 
-  window.open(edgeStoreUrl, '_blank');
+  
+  const storeUrl = selectedBrowser.value === 'edge' ? edgeStoreUrl : chromeStoreUrl;
+  window.open(storeUrl, '_blank');
 };
 </script>
 
